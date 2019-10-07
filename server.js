@@ -6,8 +6,7 @@ const server = http.createServer(app);
 const PORT = 3000;
 
 const init = async () => {
-  await Page.sync();
-  await User.sync();
+  await db.sync();
 
   server.listen(PORT, () => {
     console.log(`server is listening on port ${PORT}`);
