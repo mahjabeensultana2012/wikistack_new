@@ -1,4 +1,5 @@
 const http = require('http');
+const { db } = require('./models');
 const app = require('./app');
 const server = http.createServer(app);
 
