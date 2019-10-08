@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 
 const layout = require('./views/layout');
 
-app.get('/', (req, res) => {
-  res.send(layout('hello world.'));
+app.get('/', (req, res, next) => {
+  res.redirect('/wiki');
 });
 
 const wikiRouter = require('./routes/wiki');
