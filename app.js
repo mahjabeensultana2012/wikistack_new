@@ -16,4 +16,10 @@ app.get('/', (req, res) => {
   res.send(layout('hello world.'));
 });
 
+const wikiRouter = require('./routes/wiki');
+const userRouter = require('./routes/user');
+
+app.use('/wiki', wikiRouter);
+app.use('/wiki', userRouter);
+
 module.exports = app;
