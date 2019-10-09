@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { Page, User } = require('../models');
 const {
   addPage,
   editPage,
@@ -14,8 +15,14 @@ router.get('/', (req, res, next) => {
   res.send('got to /wiki');
 });
 
-router.post('/', (req, res, next) => {
-  res.json(req.boody);
+router.post('/', async (req, res, next) => {
+  const page = new Page(req.body);
+  try {
+    await page.save();
+    res.redirect('/');
+  } catch (err) {
+    next(err);
+  }
 });
 
 // router.get('/add', (req, res, next) => {
