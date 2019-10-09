@@ -16,6 +16,9 @@ app.get('/', (req, res, next) => {
   res.redirect('/wiki');
 });
 
+app.post('/', (req, res, next) => {
+  res.json(req.body);
+});
 const wikiRouter = require('./routes/wiki');
 const userRouter = require('./routes/user');
 

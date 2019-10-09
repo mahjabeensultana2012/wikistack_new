@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  res.send('got to /wiki');
+  res.json(req.boody);
 });
 
 // router.get('/add', (req, res, next) => {
