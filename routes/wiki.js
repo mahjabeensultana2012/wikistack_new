@@ -35,21 +35,21 @@ router.get('/add', (req, res, next) => {
 
 // /wiki/:slug
 
-router.get('/:slug', (req, res, next) => {
-  res.send('dynamic route: ' + req.params.slug);
-});
-
-// router.get('/:slug', async (req, res, next) => {
-//   try {
-//     const page = await Page.findOne({
-//       where: {
-//         slug: req.params.slug,
-//       },
-//     });
-//     res.json(page);
-//   } catch (error) {
-//     next(error);
-//   }
+// router.get('/:slug', (req, res, next) => {
+//   res.send('dynamic route: ' + req.params.slug);
 // });
+
+router.get('/:slug', async (req, res, next) => {
+  try {
+    const page = await Page.findOne({
+      where: {
+        slug: req.params.slug,
+      },
+    });
+    res.json(page);
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;
