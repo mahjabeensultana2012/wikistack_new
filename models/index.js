@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const db = new Sequelize('postgres://localhost:5432/wikistack_new', {
-  logging: true,
+  logging: false,
 });
 db.authenticate().then(() => {
   console.log('connected to the database');
