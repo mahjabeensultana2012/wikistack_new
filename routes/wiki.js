@@ -11,8 +11,13 @@ const {
   layout,
 } = require('../views');
 
-router.get('/', (req, res, next) => {
-  res.send('got to /wiki');
+router.get('/', async (req, res, next) => {
+  try {
+    const pages = await Page.findAll();
+    res.send(main(pages));
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post('/', async (req, res, next) => {
