@@ -20,13 +20,30 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+// router.post('/', async (req, res, next) => {
+//   const page = new Page(req.body);
+//   try {
+//     await page.save();
+//     res.redirect(`/wiki/${page.slug}`);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
 router.post('/', async (req, res, next) => {
   const page = new Page(req.body);
   try {
-    await page.save();
+    const [user, wasCreated] = await User.findOrCreate({
+      where: {
+        name: req.body.name,
+        email: req.body.email,
+      },
+    });
+    const page = await Page.create(req.body);
+    page.setAuthor(user);
     res.redirect(`/wiki/${page.slug}`);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
 
