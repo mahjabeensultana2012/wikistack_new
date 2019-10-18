@@ -20,6 +20,6 @@ const wikiRouter = require('./routes/wiki');
 const userRouter = require('./routes/user');
 
 app.use('/wiki', wikiRouter);
-app.use('/wiki', userRouter);
+app.use('/users', userRouter);
 
 module.exports = app;
